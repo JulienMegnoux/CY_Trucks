@@ -95,13 +95,13 @@ fi
 
 
 # Utiliser Awk pour extraire les colonnes des prénoms (sixième position) et des numéros de trajet (première position)
-#awk -F ';' 'NR > 1 {gsub(/"/, "", $1); gsub(/"/, "", $6); print $1 ";" $6}' data/data.csv > temp/donnees.txt
+awk -F ';' 'NR > 1 {gsub(/"/, "", $1); gsub(/"/, "", $6); print $1 ";" $6}' data/data.csv > temp/donnees.txt
 
 # Utiliser Awk pour compter le nombre de trajets par prénom et stocker le résultat dans un fichier temporaire
-#awk -F ';' 'NR > 1 {count_prenom[$1]++; prenom[$1]=$2} END {for (p in prenom) print p ";" count_prenom[p] ";" prenom[p]}' temp/donnees.txt > temp/nombre_trajets_par_prenom.txt
+awk -F ';' 'NR > 1 {count_prenom[$1]++; prenom[$1]=$2} END {for (p in prenom) print p ";" count_prenom[p] ";" prenom[p]}' temp/donnees.txt > temp/nombre_trajets_par_prenom.txt
 
 # Trier la liste du nombre de trajets par prénom par ordre décroissant, afficher les 10 premiers, puis trier à nouveau par le nombre de trajets
-#sort -t';' -k2 -n -r temp/nombre_trajets_par_prenom.txt | head -n 10 | sort -t';' -k2 -n -r > temp/nombre_trajets_par_prenom_tries.txt
+sort -t';' -k2 -n -r temp/nombre_trajets_par_prenom.txt | head -n 10 | sort -t';' -k2 -n -r > temp/nombre_trajets_par_prenom_tries.txt
 
 
 
