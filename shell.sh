@@ -103,11 +103,10 @@ awk -F ';' 'NR > 1 {count_prenom[$1]++; prenom[$1]=$2} END {for (p in prenom) pr
 
 # afficher les 10 premiers, puis extraire les 2ème et 3ème colonnes
 sort -t';' -k2 -n -r temp/nombre_trajets_par_prenom.txt | head -n 10 | awk -F';' '{print $2 ";" $3}' > temp/nombre_trajets_par_prenom_tries.txt
-
-
-
-
-
+# Exécute le script test.gp
+gnuplot test.gp
+# Ouvre le fichier PNG généré
+xdg-open histogramme_horizontal.png 
 
 
 
