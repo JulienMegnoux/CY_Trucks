@@ -84,35 +84,6 @@ else
         exit 1  # Quitte le script avec un code d'erreur
     fi
 fi
-
-
-
-
-
-#option d1
-
-
-
-
-# Utiliser Awk pour extraire les colonnes des prénoms (sixième position) et des numéros de trajet (première position)
-cat data/data.csv | awk -F ';' 'NR > 1 {gsub(/"/, "", $1); gsub(/"/, "", $6); print $1 ";" $6}' | awk -F ';' 'NR > 1 {count_prenom[$1]++; prenom[$1]=$2} END {for (p in prenom) print p ";"prenom[p]}' | awk -F ';' 'NR > 1 {count[$2]++} END {for (p in count) print p ";" count[p]}' | sort -t';' -k2 -n -r temp/nombre_trajets_par_prenom_tries.txt | head -n 10 | awk -F';' '{print $1 ";" $2}' > temp/nombre_trajets_par_prenom_tries_final.txt
-
-# Utiliser Awk pour compter le nombre de trajets par prénom et stocker le résultat dans un fichier temporaire
-
-
-
-
-
-# afficher les 10 premiers, puis extraire les 2ème et 3ème colonnes
-
-
-
-
-
-
-
-
-
 # Enregistrez le temps de fin
 end_time=$(date +%s)
 
