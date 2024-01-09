@@ -9,10 +9,10 @@ awk -F ';' 'NR > 1 {gsub(/"/, "", $1); gsub(/"/, "", $6); print $6 ";" $5}' | \
 # Utiliser Awk pour compter le nombre de trajets par prénom et stocker le résultat dans un fichier temporaire
 awk -F ';' 'NR > 0  {total[$1]+=$2} END {for (p in total) print p ";" total[p] }' | \
 # afficher les 10 premiers, puis extraire les 2ème et 3ème colonnes
-sort -t';' -k2 -n -r total_par_prenom.txt | head -n 10 | awk -F';' '{print $2 ";" $3}' > total_par_prenom_tries.txt
+sort -t';' -k2 -n -r total_par_prenom.txt | head -n 10 | awk -F';' '{print $2 ";" $3}' > temp/top_10_distances_conducteurs.txt
 
 # Afficher le résultat
-cat temp/top_10_distances_conducteurs.txt
+#cat temp/top_10_distances_conducteurs.txt
 
 
 # Script Gnuplot
