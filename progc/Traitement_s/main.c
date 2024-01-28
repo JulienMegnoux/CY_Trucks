@@ -1,53 +1,65 @@
-/////////////////////////////////////////////////////////// ATENTION /////////////////////////////////////////////////////////////////////
-- dans mon 2e AVL qui trie par rapport au distance total parcouru dans ma fonction insertionD je n'ai pas gerer le cas ou la distance total parcouru est égal (a voir si besoin de gerer ce cas la)
-- bien regarder par quoi il faut trié pour les 50 plus grande valeur et faire quelque modification si nécessaire
-- il manque une fonction qui lit les 50 plus grande valeur de mon 2e arbre et écris les valeur dans un fichier texte
-- quand je codais sur replit il me disait "multiple definition of (nomfonction)" il me faisait ca sur toute mes fonction donc je pense avoir une erreur dans mes include mais je suis pas sur
-
-
-
-
-
-------------------------------------------	main.c	------------------------------------------
-#include "AVLt.h"
-#include "AVLt.c"
+#include "AVLs.c"
 #include <stdio.h>
 #include <stdlib.h>
 
 // Fonction pour lire le fichier et insérer les données dans l'arbre1
-  void insererDepuisFichier(pArbre arbre, const char *nomFichier) {
-      FILE *fichier = fopen(nomFichier, "r");
+void insererDepuisFichier(pArbre *arbre, const char *nomFichier) {
+    FILE *fichier = fopen(nomFichier, "r");
 
-      if (fichier == NULL) {
-          perror("Erreur lors de l'ouverture du fichier");
-          exit(EXIT_FAILURE);
-      }
+    if (fichier == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        exit(EXIT_FAILURE);
+    }
 
-      int idtrajet;
-      float distance;
+    int idtrajet;
+    float distance;
 
-      // Lecture des données du fichier et insertion dans l'arbre1
-      while (fscanf(fichier, "%d;%f", &idtrajet, &distance) == 2) {
-          int h = 0;
-          arbre = insertionT(arbre, idtrajet, distance, &h);
-      }
+    // Lecture des données du fichier et insertion dans l'arbre1
+    while (fscanf(fichier, "%d;%f", &idtrajet, &distance) == 2) {
+        int h = 0;
+        *arbre = insertionT(*arbre, idtrajet, distance, &h);
+    }
 
-      // Fermeture du fichier
-      fclose(fichier);
-  }
+    // Fermeture du fichier
+    fclose(fichier);
+}
+
+void displayArbre(pArbre ArbreD){
+	if(ArbreD == NULL){
+	exit(15);
+	}
+	printf("[%02d]\n",ArbreD->nb);
+}
+
+void parcoursInfixeInverse(pArbre ArbreD) {
+    if (ArbreD != NULL) {
+        parcoursInfixeInverse(ArbreD->fd);
+        displayArbre(ArbreD);
+        parcoursInfixeInverse(ArbreD->fg);
+    }
+}
 
 
 int main() {
     pArbre ArbreT = NULL;  // Initialisation de l'arbre
     pArbre ArbreD = NULL;  // Initialisation de l'arbre
 
-    insererDepuisFichier(ArbreT, "test.txt");
-    CopieEtInsertionD(ArbreT, ArbreD);
-    afficherArbre(ArbreT);
+    // Insérer les données depuis le fichier dans ArbreT
+    insererDepuisFichier(&ArbreT, "resultat.txt");
+
+    // Copier et insérer les données depuis ArbreT dans ArbreD
+    ArbreD = CopieEtInsertionD(ArbreT, ArbreD);
+
+ 
+
+   // Affichage de l'arbre ArbreD
+    printf("Arbre pour Distance :\n");
     afficherArbre2(ArbreD);
+     //fixeInverse(ArbreD);
+    printf("\n");
+    
+    // Libération de la mémoire si nécessaire...
 
-
-  
     return 0;
 }
 

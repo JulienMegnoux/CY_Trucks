@@ -1,25 +1,7 @@
-------------------------------------------   AVLt.c	------------------------------------------
-#include "AVLt.h"
+#include "AVLs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-/*
-Nous créons 2 AVL, nous avons donc besoin de fonctions pour ces 2 derniers.
-D'abord les fonctions pour le premier AVL qui se trie par rapport l'Idtrajet. On recoit un fichier texte sous la forme idtrajet,distance.
-on l'ouvre, le lis, insere les valeur et trie l'avl par rapport à l'Idtrajet. 
-Si on a déja l'idtrajet dans l'avl on verifie le min et le max et on les met a jour si besoin. La distance et nb (nombre de fois qu'on a l'idtrajet) sont mis a jour, on les additionnes les distances (on calcul la moyennne lors de la création du 2e AVL pour éviter de la recalculer a chaque insertion).
-
-Puis les fonctions du 2e AVL qui se trie par rapport à la distance. On parcour le premier arbre et on ajoute les valeurs (idtrajet,distance,max,min,nb), on calcule la moyenne lors de la création d'une racine (dist/nb).
-On obtient un AVL trié par rapport à la distance qui contient les mêmes valeurs que le premier AVL en ajoutant une moyenne de distances.
-puis on fais un parcour infixe inverser du 2e AVL et on écrit dans un fichier txt.
-*/
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////// FONCTION POUR LE PREMIER AVL ////////////////////////////////////////////// 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // création arbre pour IDtrajet
 pArbre creerArbre(int idtrajet, float dist)
@@ -36,6 +18,7 @@ pArbre creerArbre(int idtrajet, float dist)
     n->nb = 1;
     n->fg = NULL;
     n->fd = NULL;
+    n ->differenceMinMax = 0;
     n->equilibre = 0;
     return n;
 }
@@ -87,15 +70,6 @@ pArbre insertionT(pArbre a, int idtrajet, float dist, int *h)
     return a;
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////// FONCTION POUR LE DEUXIEME AVL ////////////////////////////////////////////// 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 // création arbre pour Distance
 pArbre creerArbreD(int idtrajet, float dist, float max, float min, int nb)
 {
@@ -107,7 +81,7 @@ pArbre creerArbreD(int idtrajet, float dist, float max, float min, int nb)
     n->idtrajet = idtrajet;
     n->min = min;
     n->max = max;
-    n->moy = dist/nb;  // nb ne peut pas etre = 0 car dans le premier arbre lors de la création d'une racine on initie nb = 1.
+    n->moy = max-min;  // nb ne peut pas etre = 0 car dans le premier arbre lors de la création d'une racine on initie nb = 1.
     n->nb = nb;
     n->fg = NULL;
     n->fd = NULL;
@@ -163,13 +137,6 @@ pArbre CopieEtInsertionD(pArbre a, pArbre b){
   }
   return b;
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////// FONCTION UTILISE POUR LES 2 AVL ////////////////////////////////////////////// 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int min(int a, int b)
 {
@@ -248,7 +215,8 @@ void afficherArbre(pArbre a)
 void afficherArbre2(pArbre a){
   if (a != NULL){
     afficherArbre2(a->fg);
-    printf("(trajetID: %d, distance: %.2f, max: %.2f, min: %.2f, moy: %.2f, nb: %d, équilibre: %d\n) ", a->idtrajet, a->distance, a->max, a->min, a->moy, a->nb, a->equilibre);
+    //printf("(trajetID: %d, distance: %.2f, max: %.2f, min: %.2f, moy: %.2f, nb: %d, équilibre: %d\n)", a->idtrajet, a->distance, a->max, a->min, a->moy, a->nb, a->equilibre);
+    printf("moy: %.2f\n",a->moy);
     afficherArbre2(a->fd);
   }
 }
