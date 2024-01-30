@@ -18,7 +18,6 @@ pArbre creerArbre(int idtrajet, float dist)
     n->nb = 1;
     n->fg = NULL;
     n->fd = NULL;
-    n ->differenceMinMax = 0;
     n->equilibre = 0;
     return n;
 }
@@ -191,12 +190,12 @@ pArbre insertionD(pArbre b, int idtrajet, float dist, float max, float min, int 
         *h = 1;
         return creerArbreD(idtrajet, dist, max, min, nb);
     }
-    else if (dist < b->distance)
+    else if (max-min < b->max - b-> min)
     {
         b->fg = insertionD(b->fg, idtrajet, dist, max, min, nb, h);
         *h = -(*h);
     }
-    else if (dist > b->distance)
+    else if (max-min > b->max - b->min)
     {
         b->fd = insertionD(b->fd, idtrajet, dist, max, min, nb, h);
     }
@@ -223,10 +222,10 @@ pArbre insertionD(pArbre b, int idtrajet, float dist, float max, float min, int 
 
 pArbre CopieEtInsertionD(pArbre a, pArbre b){
   if (a != NULL){
-    CopieEtInsertionD(a->fg, b);
+    b = CopieEtInsertionD(a->fg, b);
     int h = 0;
     b = insertionD(b, a->idtrajet, a->distance, a->max, a->min, a->nb, &h);
-    CopieEtInsertionD(a->fd, b);
+    b = CopieEtInsertionD(a->fd, b);
   }
   return b;
 }
@@ -236,21 +235,20 @@ pArbre CopieEtInsertionD(pArbre a, pArbre b){
 void afficherArbre(pArbre a){
     if (a != NULL)
     {
-    	for(int i=0;i<50;i++){
+    	
         afficherArbre(a->fg);
-        printf("(trajetID: %d, distance: %.2f, équilibre: %d) ", a->idtrajet, a->distance, a->equilibre);
+        printf("trajetID: %d, distance: %.2f, équilibre: %d\n ", a->idtrajet, a->distance, a->equilibre);
         afficherArbre(a->fd);
-    }
+    
 }
 }
 
 void afficherArbre2(pArbre a){
   if (a != NULL){
-  		
-    afficherArbre2(a->fg);
-    //printf("(trajetID: %d, distance: %.2f, max: %.2f, min: %.2f, moy: %.2f, nb: %d, équilibre: %d\n)", a->idtrajet, a->distance, a->max, a->min, a->moy, a->nb, a->equilibre);
-    printf("moy: %.2f\n",a->moy);
     afficherArbre2(a->fd);
+    printf("trajetID: %d, distance: %.2f, max: %.2f, min: %.2f, moy: %.2f\n", a->idtrajet, a->distance, a->max, a->min, a->moy);
+    //printf("moy: %.2f\n",a->moy);
+    afficherArbre2(a->fg);
     }
   }		
 

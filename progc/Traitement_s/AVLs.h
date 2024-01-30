@@ -8,7 +8,6 @@ typedef struct arbre{
   float min;
   float max;
   float moy;
-  float differenceMinMax;
   int nb;
   struct arbre *fg;
   struct arbre *fd;

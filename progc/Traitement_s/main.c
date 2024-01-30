@@ -54,7 +54,6 @@ int main() {
  
 
    // Affichage de l'arbre ArbreD
-    printf("Arbre pour Distance :\n");
     afficherArbre2(ArbreD);
     printf("\n");
     
