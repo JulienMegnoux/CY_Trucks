@@ -41,6 +41,7 @@ void parcoursInfixeInverse(pArbre ArbreD) {
 
 
 int main() {
+	
     pArbre ArbreT = NULL;  // Initialisation de l'arbre
     pArbre ArbreD = NULL;  // Initialisation de l'arbre
 
@@ -55,7 +56,6 @@ int main() {
    // Affichage de l'arbre ArbreD
     printf("Arbre pour Distance :\n");
     afficherArbre2(ArbreD);
-     //fixeInverse(ArbreD);
     printf("\n");
     
     // Libération de la mémoire si nécessaire...
