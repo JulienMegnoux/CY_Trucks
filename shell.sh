@@ -1,8 +1,6 @@
 #!/bin/bash
 
 
-# Enregistrez le temps de début
-start_time=$(date +%s)
 
 # Spécifiez le chemin de l'exécutable en C
 executable_path="$HOME/Documents/Projet/exec"
@@ -84,12 +82,37 @@ else
         exit 1  # Quitte le script avec un code d'erreur
     fi
 fi
-# Enregistrez le temps de fin
-end_time=$(date +%s)
 
-# Calculez la différence pour obtenir le temps d'exécution
-execution_time=$((end_time - start_time))
 
-# Affichez le temps d'exécution
-echo "Le script a mis $execution_time secondes à s'exécuter."
 
+# permet d'executer nos options 
+function myhelp()
+{
+echo "veuillez tapez ./shell options"
+echo "options :| -d1 | -d2 | -l |"
+}
+if [ $# = 1 ]; then
+
+
+	if [ $1 == "-d1" ]; then
+		#pretraitement
+		echo "option d1"
+		./option_D1.sh
+	elif [ $1 == "-d2" ]; then
+		#pretraitement
+		echo "option d2"
+		./testoptiond2.sh
+	elif [ $1 == "-l" ]; then
+		#pretraitement
+		echo "option l"
+		./traitementL.sh
+	
+	else 
+		myhelp
+	
+	fi 
+
+else
+	myhelp
+
+fi
