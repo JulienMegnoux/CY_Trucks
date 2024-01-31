@@ -235,7 +235,6 @@ pArbre CopieEtInsertionD(pArbre a, pArbre b){
 void afficherArbre(pArbre a){
     if (a != NULL)
     {
-    	
         afficherArbre(a->fg);
         printf("trajetID: %d, distance: %.2f, équilibre: %d\n ", a->idtrajet, a->distance, a->equilibre);
         afficherArbre(a->fd);
@@ -246,7 +245,7 @@ void afficherArbre(pArbre a){
 void afficherArbre2(pArbre a){
   if (a != NULL){
     afficherArbre2(a->fd);
-    printf("trajetID: %d, distance: %.2f, max: %.2f, min: %.2f, moy: %.2f\n", a->idtrajet, a->distance, a->max, a->min, a->moy);
+    printf("%d,%.2f,%.2f,%.2f,%.2f\n", a->idtrajet, a->distance, a->max, a->min, a->moy);
     //printf("moy: %.2f\n",a->moy);
     afficherArbre2(a->fg);
     }
