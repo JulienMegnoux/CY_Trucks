@@ -89,7 +89,7 @@ fi
 function myhelp()
 {
 echo "veuillez tapez ./shell options"
-echo "options :| -d1 | -d2 | -l |"
+echo "options :| -d1 | -d2 | -l | -s | -t |"
 }
 if [ $# = 1 ]; then
 
@@ -106,7 +106,14 @@ if [ $# = 1 ]; then
 		#pretraitement
 		echo "option l"
 		./Option_L.sh
-	
+	elif [ $1 == "-l" ]; then
+		#pretraitement
+		echo "option s"
+		./Option_s.sh
+  	elif [ $1 == "-l" ]; then
+		#pretraitement
+		echo "option t"
+		./Option_t.sh
 	else 
 		myhelp
 	
