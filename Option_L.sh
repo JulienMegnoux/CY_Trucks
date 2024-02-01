@@ -14,6 +14,7 @@ gsub(/"/, "", $5);
     }
 }' data/data.csv | sort -t';' -k2 -n -r | head -n 10 > temp/top_10_trajets.txt
 
+
 #creer un graphique d'historigramme vertical avec gnuplot
 gnuplot <<EOF
 set terminal pngcairo enhanced font 'arial,10'

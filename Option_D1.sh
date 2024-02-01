@@ -9,7 +9,7 @@ cat data/data.csv | awk -F ';' 'NR > 1 {gsub(/"/, "", $1); gsub(/"/, "", $6); pr
 # Script Gnuplot
 gnuplot <<EOF
 set terminal pngcairo enhanced font 'arial,10'
-set output 'histogramme_vertical.png'
+set output 'images/histogramme_vertical.png'
 
 set style fill solid
 set boxwidth 0.3  # Ajustez la largeur des barres selon vos préférences
@@ -30,8 +30,8 @@ plot 'temp/nombre_trajets_par_prenom_tries_final.txt' using (\$0-0.3):2:xtic(1) 
 EOF
 
 # Incliner l'image à 90 degrés avec ImageMagick
-convert -rotate 90 histogramme_vertical.png histogramme_incline.png
+convert -rotate 90 images/histogramme_vertical.png images/histogramme_incline.png
 
 # Ouvrir l'image inclinée
-xdg-open histogramme_incline.png
+xdg-open images/histogramme_incline.png
 

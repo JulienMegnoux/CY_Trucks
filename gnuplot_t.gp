@@ -1,5 +1,5 @@
 set terminal pngcairo enhanced font 'arial,10' size 800, 600
-set output 'histogramme.png'
+set output 'images/histogramme.png'
 
 unset errorbars
 set datafile separator ','

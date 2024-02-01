@@ -18,7 +18,7 @@ echo "Le script a mis $((end_time - start_time)) secondes à s'exécuter."
 
 gnuplot <<EOF
 set terminal pngcairo enhanced font 'arial,10'
-set output 'histogramme_verticald2.png'
+set output 'images/histogramme_verticald2.png'
 
 set style fill solid
 set boxwidth 0.3  # Ajustez la largeur des barres selon vos préférences
@@ -39,7 +39,7 @@ plot 'total_par_prenom_tries.txt' using (\$0-0.3):2:xtic(1) with boxes notitle
 EOF
 
 # Incliner l'image à 90 degrés avec ImageMagick
-convert -rotate 90 histogramme_verticald2.png histogramme_incline.png
+convert -rotate 90 images/histogramme_verticald2.png images/histogramme_incline.png
 
 # Ouvrir l'image inclinée
-xdg-open histogramme_incline.png
+xdg-open images/histogramme_incline.png

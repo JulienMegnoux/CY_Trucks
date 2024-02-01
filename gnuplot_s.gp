@@ -1,5 +1,5 @@
 set terminal pngcairo enhanced font 'arial,10' size 800, 600
-set output 'graphique.png'
+set output 'images/graphique.png'
 
 unset errorbars
 set datafile separator ','
