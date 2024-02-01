@@ -245,7 +245,7 @@ void afficherArbre(pArbre a){
 void afficherArbre2(pArbre a){
   if (a != NULL){
     afficherArbre2(a->fd);
-    printf("%d,%.2f,%.2f,%.2f,%.2f\n", a->idtrajet, a->distance, a->max, a->min, a->moy);
+    printf("%d,%.2f,%.2f,%.2f,%.2f,%f\n", a->idtrajet, a->distance, a->max, a->min, a->moy,(a->distance)/(a->nb));
     //printf("moy: %.2f\n",a->moy);
     afficherArbre2(a->fg);
     }
