@@ -97,15 +97,15 @@ if [ $# = 1 ]; then
 	if [ $1 == "-d1" ]; then
 		#pretraitement
 		echo "option d1"
-		./option_D1.sh
+		./Option_D1.sh
 	elif [ $1 == "-d2" ]; then
 		#pretraitement
 		echo "option d2"
-		./testoptiond2.sh
+		./Option_D2.sh
 	elif [ $1 == "-l" ]; then
 		#pretraitement
 		echo "option l"
-		./traitementL.sh
+		./Option_L.sh
 	
 	else 
 		myhelp
