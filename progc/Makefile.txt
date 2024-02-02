@@ -1,0 +1,10 @@
+CC = gcc
+CFLAGS = -Wall
+
+all: my_program
+
+my_program: CY_Trucks/progc/Traitement_s/AVLs.c CY_Trucks/progc/Traitement_s/AVLs.h CY_Trucks/progc/Traitement_s/main.c  CY_Trucks/progc/Traitement_t/optiont.c CY_Trucks/progc/Traitement_t/test.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+clean:
+	rm -f my_program
