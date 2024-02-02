@@ -14,10 +14,6 @@ gsub(/"/, "", $5);
 		}
 }' data/data.csv | sort -t';' -k2 -n -r | head -n 10 > temp/top_10_trajets.txt
 
-end_time=$(date +%s)
-
-echo "Le script a mis $((end_time - start_time))secondes"
-
 
 #creer un graphique d'historigramme vertical avec gnuplot
 gnuplot <<EOF
@@ -34,10 +30,11 @@ set datafile separator ';'
 set title "Les 10 trajets les plus longs"
 
 plot "temp/top_10_trajets.txt" using (\$0-0.3):2:xtic(1) with boxes notitle
-convert -rotate 90 images/histogramme_vertical.png images/histogramme_vertical.png
+EOF
+
+end_time=$(date +%s)
+echo "Le script a mis $((end_time - start_time))secondes"
+
 
 # Ouvrir l'image inclinée
 xdg-open images/histogramme_vertical.png
-
-
-
