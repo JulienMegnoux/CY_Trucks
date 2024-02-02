@@ -1,4 +1,4 @@
-#include "AVLs.c"
+#include "AVLs.h"
 #include <stdio.h>
 #include <stdlib.h>
 
