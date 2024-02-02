@@ -34,7 +34,7 @@ II. Compilation et utilisation du projet :
 
 
 III. Traitements disponibles :
-pour les utiliser : faire ./shell.sh -traitements
+``bash pour les utiliser : faire ./shell.sh -traitements
 traitements :
     "-d1" - conducteurs avec le plus de trajets
     "-d2" - top 10 conducteurs avec la plus grande distance
