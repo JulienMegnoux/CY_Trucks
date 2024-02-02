@@ -18,7 +18,7 @@ gsub(/"/, "", $5);
 #creer un graphique d'historigramme vertical avec gnuplot
 gnuplot <<EOF
 set terminal pngcairo enhanced font 'arial,10'
-set output "histogramme_vertical.png"
+set output "images/histogramme_vertical.png"
 
 set style fill solid
 set boxwidth 0.5
