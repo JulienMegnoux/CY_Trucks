@@ -1,13 +1,23 @@
-install: 
-	gcc  "$HOME/Documents/Projet/CY_Trucks/progc/Traitement_s/main.c" -o "$HOME/Documents/Projet/CY_Trucks/exec"
+CC = gcc
 
-all:
-	gcc  "$HOME/Documents/Projet/CY_Trucks/progc/Traitement_s/main.c" -o "$HOME/Documents/Projet/CY_Trucks/exec"
+all: my_programs my_programt
 
+main.o: CY_Trucks/progc/Traitement_s/main.c 
+	$(CC) -c $< -o $@
 
-clear:
-	rm -rf "$HOME/Documents/Projet/CY_Trucks/exec"
+AVLs.o: CY_Trucks/progc/Traitement_s/AVLs.c CY_Trucks/progc/Traitement_s/AVLs.h
+	$(CC) -c $< -o $@
+
+test.o: CY_Trucks/progc/Traitement_t/test.c
+	$(CC) -c $< -o $@
+
+my_programs: main.o AVLs.o
+	$(CC) $^ -o $@
+
+my_programt: test.o 
+	$(CC) $^ -o $@
 
 clean:
-	rm -rf "$HOME/Documents/Projet/CY_Trucks/exec"
-
+	rm -f *.o
+	rm -f my_programs
+	rm -f my_programt
