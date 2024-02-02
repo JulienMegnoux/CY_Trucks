@@ -5,13 +5,13 @@ start_time=$(date +%s)
 awk -F ';' 'NR > 1 {
 gsub(/"/, "", $1); 
 gsub(/"/, "", $5);
-    id_trajet = $1;
-    distance = $5; 
-    total_distance[id_trajet] += distance;
+		id_trajet = $1;
+		distance = $5; 
+		total_distance[id_trajet] += distance;
 } END {
-    for (id in total_distance) {
-        print id ";" total_distance[id];
-    }
+		for (id in total_distance) {
+				print id ";" total_distance[id];
+		}
 }' data/data.csv | sort -t';' -k2 -n -r | head -n 10 > temp/top_10_trajets.txt
 
 
@@ -33,4 +33,9 @@ plot "temp/top_10_trajets.txt" using (\$0-0.3):2:xtic(1) with boxes notitle
 EOF
 
 end_time=$(date +%s)
+
 echo "Le script a mis $((end_time - start_time))secondes"
+convert -rotate 90 images/histogramme_verticald2.png images/histogramme_incline.png
+
+# Ouvrir l'image inclinée
+xdg-open images/histogramme_incline.png
