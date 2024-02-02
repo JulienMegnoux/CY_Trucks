@@ -23,14 +23,17 @@ I. Structure du projet :
 
 II. Compilation et utilisation du projet :
     Avant tout, il est nécessaire d'exécuter la commande chmod pour garantir les permissions nécessaires comme ceci :
-                    '''bash
-                    chmod 777 fichier
-            
-    Afin de compiler correctement le programme il faudra être sous Linux basé sur OS. 
+                    bash ``chmod 777 nomfichier.sh``
+     Afin de compiler correctement le programme il faudra être sous Linux basé sur OS. 
     compiler selon les commandes présentes dans le makefile.
     Afin d'utiliser correctement le projet il faudra en amont installer Gnuplot pour pouvoir utiliser Gnuplot.
     Afin d'utiliser le projet il faudra mettre le fichier.csv dans le dossier data.
     Pour choisir un traitement, vous devrez passer la lettre du traitement en argument (les différents arguments seront détaillés plus loin).
+
+Compilation en C : Makefile 
+    ``make -f Makefile``
+    pour effacer 
+    ``make clean``
 
 
 III. Traitements disponibles :
@@ -43,4 +46,7 @@ traitements :
    `` -s`` - statistiques sur les étapes
    `` -h`` -help : indique tout les arguments existants et leur traitement associé.
     exemple pour afficher les conducteur avec le plus de trajtes : faire ./shell.sh -d1
+
+
+
 
