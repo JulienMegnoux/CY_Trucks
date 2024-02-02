@@ -34,10 +34,13 @@ II. Compilation et utilisation du projet :
 
 
 III. Traitements disponibles :
+pour les utiliser : faire ./shell.sh -traitements
+traitements :
     "-d1" - conducteurs avec le plus de trajets
-    "-d2" - conducteurs avec la plus grande distance
+    "-d2" - top 10 conducteurs avec la plus grande distance
     "-l" - les 10 trajets les plus longs
     "-t" - les 10 villes les plus traversées
     "-s" - statistiques sur les étapes
     "-h" -help : indique tout les arguments existants et leur traitement associé.
+    exemple pour afficher les conducteur avec le plus de trajtes : faire ./shell.sh -d1
 
