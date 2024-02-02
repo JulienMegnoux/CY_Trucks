@@ -1,4 +1,5 @@
-Projet CY-Trucks : Projet de Gestion de Donnnées pour une Société de Transport Routier
+# Projet CY-Trucks :
+Projet de Gestion de Donnnées pour une Société de Transport Routier
     Projet Informatique III de l'année 2023-2024 à CY-Tech.
 Ce projet a pour but d'analyser les données massives des trajets routiers afin de générer des graphiques.
 
@@ -10,7 +11,7 @@ Table des matières :
 
   
 
-I. Structure du projet :
+## I. Structure du projet :
     Le projet est dans le github CY-Trucks.
     data: Ce dossier contiendra le fichier CSV d'entrée avec les données des trajets routiers ici data.csv.
     progc: Le programme C et ses fichiers associés (makefile,AVLs.c, AVLs.h, main.c et test.c) seront situés ici.
@@ -21,7 +22,7 @@ I. Structure du projet :
 
 
 
-II. Compilation et utilisation du projet :
+## II. Compilation et utilisation du projet :
     Avant tout, il est nécessaire d'exécuter la commande chmod pour garantir les permissions nécessaires comme ceci :
                     bash ``chmod 777 nomfichier.sh``
      Afin de compiler correctement le programme il faudra être sous Linux basé sur OS. 
@@ -36,7 +37,7 @@ Compilation en C : Makefile
     ``make clean``
 
 
-III. Traitements disponibles :
+## III. Traitements disponibles :
 bash pour les utiliser : faire ``./shell.sh -traitements``
 traitements :
    `` -d1`` - conducteurs avec le plus de trajets
