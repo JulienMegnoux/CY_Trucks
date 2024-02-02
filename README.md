@@ -12,8 +12,8 @@ Table des matières :
 
 I. Structure du projet :
     Le projet est dans le github CY-Trucks.
-    data: Ce dossier contiendra le fichier CSV d'entrée avec les données des trajets routiers.
-    progc: Le programme C et ses fichiers associés (makefile, exécutable, etc.) seront situés ici.
+    data: Ce dossier contiendra le fichier CSV d'entrée avec les données des trajets routiers ici data.csv.
+    progc: Le programme C et ses fichiers associés (makefile,AVLs.c, AVLs.h, main.c et test.c) seront situés ici.
     images: Les graphiques générés, au format PNG, seront stockés dans ce dossier. 
     temp: Les fichiers intermédiaires nécessaires au fonctionnement de l'application seront placés ici.
     demo: Les résultats d'exécutions précédentes seront stockés dans ce dossier.
