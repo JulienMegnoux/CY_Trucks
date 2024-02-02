@@ -4,9 +4,11 @@
 start_time=$(date +%s)
 
 # Utiliser Awk pour extraire les colonnes des prénoms (sixième position) et des numéros de trajet (première position),
-# compter le nombre de trajets par prénom, trier et sélectionner les 10 premiers, puis extraire les 2ème et 3ème colonnes
+# compter le nombre de trajets par nom complet du conducteur (prénom et nom avec espace),
+# trier et sélectionner les 10 premiers, puis extraire les 2ème et 3ème colonnes
 
-awk -F ';' 'NR > 1 {gsub(/"/, "", $1); gsub(/"/, "", $6); total[$6]+=$5} END {for (p in total) print total[p], p}' data/data.csv | sort -rn | awk 'NR <= 10 {print $2 ";" $1}' > total_par_prenom_tries.txt
+
+awk -F ';' 'NR > 1 {gsub(/"/, "", $1); full_name=$6" "$7; total[full_name]+=$5} END {for (p in total) print p ";" total[p]}' data/data.csv | sort -t';' -k2 -n -r | head -n 10 > temp/total_par_nom_complet_tries.txt
 
 # Enregistrez le temps de fin
 end_time=$(date +%s)
@@ -17,28 +19,38 @@ echo "Le script a mis $((end_time - start_time)) secondes à s'exécuter."
 #gnuplot
 
 gnuplot <<EOF
-set terminal pngcairo enhanced font 'arial,10'
+
+
+
+# Paramètres de sortie
+set terminal pngcairo size 1000,800 enhanced font 'Arial,10'
 set output 'images/histogramme_verticald2.png'
 
-set style fill solid
-set boxwidth 0.3  # Ajustez la largeur des barres selon vos préférences
+# Paramètres du graphique
+set size 0.95,1
+set label rotate by 90 "HISTOGRAMME DE TRAITEMENT -d2" at screen 0.015, 0.5 center offset 0.3
+set xlabel 'CONDUCTEURS '
+set ylabel 'DISTANCE TOTALE (en km)'
+set xtic rotate by 90 offset 0,-9
+set xlabel rotate by 180 offset 0,-9
+set ylabel offset 5
+set ytic offset 3,0.60
+set yrange [0:200000]
+set ytic rotate by 90
+set ytics 0, 40000, 200000
+set format y "%g km"  # Format pour l'axe des ordonnées
+set style histogram rowstacked
+set style fill solid border -1
+set boxwidth 0.5
+unset key
 
-set ylabel 'Distance totale'
-set xlabel 'Prénom'
-
+# Tracé du graphique
 set datafile separator ';'
-set xtics rotate by 90 offset -0.8,-1.8
-set ytics rotate by 90 offset -0.8,-1.8
+plot 'temp/total_par_nom_complet_tries.txt' using 2:xtic(1) with boxes lc rgb 'violet' title 'Distance'
 
-# Utilisez le format de données 'xtic(1)' pour spécifier les prénoms en tant que libellés de l'axe des x
-# Utilisez 'rotate by' pour faire	 pivoter les étiquettes
-set yrange [0:250]
 
-# Utilisez '($0-0.3)':2 pour décaler les barres vers la gauche
-plot 'total_par_prenom_tries.txt' using (\$0-0.3):2:xtic(1) with boxes notitle
 EOF
 
-# Incliner l'image à 90 degrés avec ImageMagick
 convert -rotate 90 images/histogramme_verticald2.png images/histogramme_incline.png
 
 # Ouvrir l'image inclinée
